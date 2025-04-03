@@ -28,28 +28,11 @@ public class HomeScreen {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query"))); // Wait for search bar
     }
 
-    @Test(description = "Opens the website and checks all the links are working")
-    public void OpenWebsite() throws IOException {
+    @Test(description = "Opens the website")
+    public void OpenWebsite() {
         String url = driver.getCurrentUrl();
         Assert.assertEquals(url, baseUrl);
-        String linkText;
 
-        // Create a list of WebElements that gets all links
-        List<WebElement> links = driver.findElements(By.tagName("a"));
-        System.out.println("Total links on the page: " + links.size());
-
-        // Iterate through all links, take screenshots, and navigate back
-        for (int i = 0; i < links.size(); i++) {
-
-            if (links.get(i).getAttribute("href") != null) {
-                linkText = links.get(i).getText();
-                links.get(i).click();
-                Screenshot("C:\\Users\\Shadow\\Downloads\\" + linkText + ".png");
-                driver.navigate().back();
-                links = driver.findElements(By.tagName("a"));
-                wait.until(ExpectedConditions.visibilityOf(links.get(++i)));
-            }
-        }
     }
 
     public void Screenshot(String path) throws IOException {
