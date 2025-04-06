@@ -12,8 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class HomeScreen {
     WebDriver driver;
@@ -23,23 +22,85 @@ public class HomeScreen {
     @BeforeTest
     public void Setup() {
         driver = new ChromeDriver();
-        driver.get("https://www.youtube.com/");
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query"))); // Wait for search bar
     }
 
-    @Test(description = "Opens the website")
-    public void OpenWebsite() {
+    @Test(description = "Opens the website", priority = 1)
+    public void OpenWebsite() throws IOException {
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query")));
         String url = driver.getCurrentUrl();
         Assert.assertEquals(url, baseUrl);
+        driver.manage().window().maximize();
+        Screenshot("Open website");
+    }
 
+    @Test(description = "Checks Shorts link", priority = 2)
+    public void ShortsLink() throws IOException {
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[2]/a")));
+        WebElement shortsLink;
+        shortsLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[2]/a"));
+        shortsLink.click();
+        Screenshot("Shorts link");
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query")));
+    }
+
+    @Test(description = "Checks Youtube icon link", priority = 3)
+    public void YoutubeIconLink() throws IOException {
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query")));
+        WebElement youtubeIconLink;
+        youtubeIconLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/div[2]/ytd-masthead/div[4]/div[1]/ytd-topbar-logo-renderer/a/div/ytd-logo/yt-icon/span/div"));
+        youtubeIconLink.click();
+        Screenshot("Youtube icon link");
+    }
+
+    @Test(description = "Checks History link", priority = 4)
+    public void HistoryLink() throws IOException {
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[2]/a")));
+        WebElement historyLink;
+        historyLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[2]/a"));
+        historyLink.click();
+        Screenshot("History link");
+    }
+
+    @Test(description = "Checks You link", priority = 5)
+    public void YouLink() throws IOException {
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a")));
+        WebElement youLink;
+        youLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a"));
+        youLink.click();
+        Screenshot("You link");
+    }
+
+    @Test(description = "Checks Subscriptions link", priority = 6)
+    public void SubscriptionsLink() throws IOException {
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a")));
+        WebElement subscriptionsLink;
+        subscriptionsLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a"));
+        subscriptionsLink.click();
+        Screenshot("Subscriptions link");
+    }
+
+    @Test(description = "Checks Home link", priority = 7)
+    public void HomeLink() throws IOException {
+        driver.get("https://www.youtube.com/");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[1]/a")));
+        WebElement homeLink;
+        homeLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[1]/a"));
+        homeLink.click();
+        Screenshot("Home link");
     }
 
     public void Screenshot(String path) throws IOException {
-        // Take a screenshot and save it to a file
 
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File destination = new File(path);
+        File destination = new File("C:\\Users\\Shadow\\Desktop\\ScreenshotsForYoutubeProject\\" + path);
         Files.copy(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         System.out.println("Screenshot taken at: " + path);
