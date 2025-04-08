@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Shadow/IdeaProjects/RedditProject/src">
         <classes>
-            <class name="HomeScreen"/>
+            <class name="HomeScreenSmokeTesting"/>
             <class name="Login"/>
             <class name="Search"/>
             <class name="Video"/>

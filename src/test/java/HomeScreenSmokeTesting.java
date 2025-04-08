@@ -11,7 +11,7 @@ import java.nio.file.StandardCopyOption;
 
 
 /**
- * The HomeScreen class represents a test automation suite for validating
+ * The HomeScreenSmokeTesting class represents a test automation suite for validating
  * various functionalities and elements of the YouTube homepage. This class
  * is built using Selenium WebDriver for browser interaction and TestNG
  * annotations for structuring and executing test cases.
@@ -38,7 +38,7 @@ import java.nio.file.StandardCopyOption;
  * This test class is designed for interactive and automated validation of YouTube's
  * UI elements and behavior, ensuring that key navigation links and features work as expected.
  */
-public class HomeScreen {
+public class HomeScreenSmokeTesting {
     WebDriver driver;
     WebDriverWait wait;
     String baseUrl = "https://www.youtube.com/";
