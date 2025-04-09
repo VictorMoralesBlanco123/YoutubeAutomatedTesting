@@ -131,8 +131,23 @@ public class HomeScreenSmokeTesting {
     }
 
     public void Screenshot(String path) throws IOException {
+        // Get the user's home directory
+        String userHome = System.getProperty("user.home");
+
+        // Define the directory for saving screenshots
+        File screenshotsDir = new File(userHome + File.separator + "ScreenshotsForYoutubeProject");
+
+        // Create the directory if it doesn't exist
+        if (!screenshotsDir.exists()) {
+            screenshotsDir.mkdirs();
+        }
+
+        path = screenshotsDir.getAbsolutePath() + File.separator + "Downloads" + File.separator + path + ".png";
+
+        // Define the destination file
+        File destination = new File(path);
+
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File destination = new File("C:\\Users\\Shadow\\Desktop\\ScreenshotsForYoutubeProject\\" + path);
         Files.copy(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         System.out.println("Screenshot taken at: " + path);
