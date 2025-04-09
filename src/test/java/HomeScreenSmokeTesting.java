@@ -15,12 +15,12 @@ import java.nio.file.StandardCopyOption;
  * various functionalities and elements of the YouTube homepage. This class
  * is built using Selenium WebDriver for browser interaction and TestNG
  * annotations for structuring and executing test cases.
- *
+
  * Fields:
  * - driver: Instance of WebDriver for browser operations.
  * - wait: Instance of WebDriverWait for explicit wait handling.
  * - baseUrl: Base URL of the YouTube homepage.
- *
+
  * Methods:
  * - Setup(): Initializes the WebDriver, sets up WebDriverWait, and loads the YouTube homepage.
  * - OpenWebsite(): Verifies that the website opens successfully by checking the current URL.
@@ -34,7 +34,7 @@ import java.nio.file.StandardCopyOption;
  * - Screenshot(String path): Captures a screenshot and saves it to the specified path.
  * - Wait(int seconds): Pauses the test execution for the specified number of seconds.
  * - TearDown(): Closes the browser and ends the WebDriver session.
- *
+
  * This test class is designed for interactive and automated validation of YouTube's
  * UI elements and behavior, ensuring that key navigation links and features work as expected.
  */
@@ -92,9 +92,9 @@ public class HomeScreenSmokeTesting {
 
     @Test(description = "Checks You link", priority = 5)
     public void YouLink() throws IOException {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[1]/a")));
         WebElement youLink;
-        youLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a"));
+        youLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[1]/a"));
         youLink.click();
         Wait(3);
         Screenshot("You link");
@@ -140,7 +140,7 @@ public class HomeScreenSmokeTesting {
 
     public void Wait(int seconds) {
         try {
-            Thread.sleep(seconds * 1000);
+            Thread.sleep(seconds * 1000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
