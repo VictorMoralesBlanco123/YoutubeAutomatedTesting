@@ -132,7 +132,7 @@ public class HomeScreenSmokeTesting {
     }
 
     public void Screenshot(String path) throws IOException {
-        // Get the user's home directory
+
         String userHome = System.getProperty("user.home");
 
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
