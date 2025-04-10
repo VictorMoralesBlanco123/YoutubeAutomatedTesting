@@ -6,6 +6,7 @@
             <class name="HomeScreenSmokeTesting"/>
             <class name="Login">
                 <methods>
+                    <include name="setup"/>
                     <include name="testValidLogin"/>
                     <include name="testLogout"/>
                     <include name="testLogoutRedirect"/>
