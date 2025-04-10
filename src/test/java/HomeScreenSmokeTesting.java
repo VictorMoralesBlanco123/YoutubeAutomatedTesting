@@ -12,38 +12,25 @@ import java.nio.file.StandardCopyOption;
 
 
 /**
- * The HomeScreenSmokeTesting class represents a test automation suite for validating
- * various functionalities and elements of the YouTube homepage. This class
- * is built using Selenium WebDriver for browser interaction and TestNG
- * annotations for structuring and executing test cases.
- * <p>
- * Fields:
- * - driver: Instance of WebDriver for browser operations.
- * - wait: Instance of WebDriverWait for explicit wait handling.
- * - baseUrl: Base URL of the YouTube homepage.
- * <p>
- * Methods:
- * - Setup(): Initializes the WebDriver, sets up WebDriverWait, and loads the YouTube homepage.
- * - OpenWebsite(): Verifies that the website opens successfully by checking the current URL.
- * - ShortsLink(): Validates the functionality and availability of the Shorts link on the homepage.
- * - YoutubeIconLink(): Checks the functionality of the main YouTube icon link in the header.
- * - HistoryLink(): Verifies the History link functionality in the navigation menu.
- * - YouLink(): Validates the availability and functionality of the You link in the navigation menu.
- * - SubscriptionsLink(): Checks the functionality of the Subscriptions link.
- * - HomeLink(): Tests the availability and functionality of the Home link in the navigation menu.
- * - LoginLink(): Verifies access to the Login link and its functionality.
- * - Screenshot(String path): Captures a screenshot and saves it to the specified path.
- * - Wait(int seconds): Pauses the test execution for the specified number of seconds.
- * - TearDown(): Closes the browser and ends the WebDriver session.
- * <p>
- * This test class is designed for interactive and automated validation of YouTube's
- * UI elements and behavior, ensuring that key navigation links and features work as expected.
+ * A class for performing smoke testing on the YouTube home screen.
+ * It includes setup, test cases for various UI elements, taking screenshots,
+ * and cleanup after testing.
  */
 public class HomeScreenSmokeTesting {
     WebDriver driver;
     WebDriverWait wait;
     String baseUrl = "https://www.youtube.com/";
 
+    /**
+     * Sets up the preconditions for the test execution.
+     * Initializes the WebDriver instance for Chrome browser and configures
+     * an explicit WebDriverWait with a timeout of 10 seconds. Navigates
+     * to the YouTube homepage.
+     *
+     * This setup method is executed before any test methods marked with the
+     * TestNG @Test annotation. It ensures the WebDriver is properly initialized
+     * and points to the target URL for testing.
+     */
     @BeforeTest
     public void Setup() {
         driver = new ChromeDriver();
@@ -51,6 +38,19 @@ public class HomeScreenSmokeTesting {
         driver.get("https://www.youtube.com/");
     }
 
+    /**
+     * Verifies that the website opens successfully.
+     *
+     * This method:
+     * - Waits for the visibility of the search bar element identified by its name.
+     * - Retrieves the current URL of the webpage and asserts that it matches the expected base URL.
+     * - Maximizes the browser window.
+     * - Introduces a brief delay to allow for UI stabilization.
+     * - Captures a screenshot of the current state of the website for verification purposes.
+     *
+     * @throws IOException If an input/output operation fails during the screenshot process.
+     * @Test This is a TestNG test method that runs with the specified description and priority.
+     */
     @Test(description = "Verifies the website opens", priority = 1)
     public void OpenWebsite() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("search_query")));
@@ -61,6 +61,23 @@ public class HomeScreenSmokeTesting {
         Screenshot("Verify website");
     }
 
+    /**
+     * Verifies the functionality of the "Shorts" link on the YouTube homepage.
+     *
+     * <ul>
+     * - Waits for the "Shorts" link element to be visible on the page.
+     * - Locates the "Shorts" link element using its XPath.
+     * - Clicks on the "Shorts" link.
+     * - Waits for a specified duration to allow for the page to load.
+     * - Captures a screenshot of the visible state after clicking the link.
+     * </ul>
+     *
+     * @throws IOException if there is an error while taking or saving the screenshot
+     *
+     * Preconditions:
+     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     * - The "Shorts" link element must be present and visible on the page.
+     */
     @Test(description = "Checks Shorts link", priority = 2)
     public void ShortsLink() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[2]/a")));
@@ -71,6 +88,22 @@ public class HomeScreenSmokeTesting {
         Screenshot("Shorts link");
     }
 
+    /**
+     * Verifies the functionality of the YouTube icon link on the homepage.
+     *
+     * This method:
+     * - Waits for the YouTube icon link element to be visible on the page.
+     * - Locates the YouTube icon link element using its XPath.
+     * - Clicks on the YouTube icon link to redirect to the main YouTube page.
+     * - Waits for a specified duration to allow for the page to load.
+     * - Captures a screenshot of the current state after interacting with the icon link.
+     *
+     * @throws IOException if there is an error while taking or saving the screenshot.
+     *
+     * Preconditions:
+     * - The WebDriver instance should be initialized and directed to the YouTube homepage.
+     * - Explicit wait must be configured to ensure the visibility of elements on the page.
+     */
     @Test(description = "Checks Youtube icon link", priority = 3)
     public void YoutubeIconLink() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/div[2]/ytd-masthead/div[4]/div[1]/ytd-topbar-logo-renderer/a/div/ytd-logo/yt-icon/span/div")));
@@ -81,6 +114,22 @@ public class HomeScreenSmokeTesting {
         Screenshot("Youtube icon link");
     }
 
+    /**
+     * Verifies the functionality of the "History" link on the YouTube homepage.
+     *
+     * This method performs the following steps:
+     * - Waits for the "History" link element to become visible.
+     * - Locates the "History" link using its XPath.
+     * - Clicks on the "History" link to navigate to the History page.
+     * - Waits for a specified duration to ensure the page loads completely.
+     * - Captures a screenshot of the current state after clicking the link.
+     *
+     * @throws IOException if there is an error while taking or saving the screenshot.
+     *
+     * Preconditions:
+     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     * - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     */
     @Test(description = "Checks History link", priority = 4)
     public void HistoryLink() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[2]/a")));
@@ -91,6 +140,22 @@ public class HomeScreenSmokeTesting {
         Screenshot("History link");
     }
 
+    /**
+     * Verifies the functionality of the "You" link on the YouTube homepage.
+     *
+     * This method performs the following steps:
+     * - Waits for the "You" link element to be visible.
+     * - Locates the "You" link element using its XPath.
+     * - Clicks on the "You" link to navigate to the associated page.
+     * - Pauses for a specified duration to allow the page to load completely.
+     * - Captures a screenshot of the current state after clicking the link.
+     *
+     * @throws IOException if there is an error while taking or saving the screenshot.
+     *
+     * Preconditions:
+     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     * - Explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     */
     @Test(description = "Checks You link", priority = 5)
     public void YouLink() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[1]/a")));
@@ -101,6 +166,22 @@ public class HomeScreenSmokeTesting {
         Screenshot("You link");
     }
 
+    /**
+     * Verifies the functionality of the "Subscriptions" link on the YouTube homepage.
+     *
+     * This method performs the following steps:
+     * - Waits for the "Subscriptions" link element to become visible on the page.
+     * - Locates the "Subscriptions" link element using its XPath.
+     * - Clicks on the "Subscriptions" link to navigate to the associated page.
+     * - Waits for a specified duration to ensure the page fully loads after navigation.
+     * - Captures a screenshot of the page after clicking the "Subscriptions" link.
+     *
+     * @throws IOException If there is an error while taking or saving the screenshot.
+     *
+     * Preconditions:
+     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     * - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     */
     @Test(description = "Checks Subscriptions link", priority = 6)
     public void SubscriptionsLink() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a")));
@@ -111,6 +192,22 @@ public class HomeScreenSmokeTesting {
         Screenshot("Subscriptions link");
     }
 
+    /**
+     * Verifies the functionality of the "Home" link on the YouTube homepage.
+     *
+     * This method performs the following actions:
+     * - Waits for the "Home" link element to become visible using an explicit wait.
+     * - Locates the "Home" link element by its XPath.
+     * - Clicks on the "Home" link to navigate to the homepage.
+     * - Introduces a delay to allow the page to load completely.
+     * - Captures a screenshot of the current state after interacting with the "Home" link.
+     *
+     * @throws IOException if an error occurs while taking or saving the screenshot.
+     *
+     * Preconditions:
+     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     * - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     */
     @Test(description = "Checks Home link", priority = 7)
     public void HomeLink() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[1]/a")));
@@ -121,6 +218,22 @@ public class HomeScreenSmokeTesting {
         Screenshot("Home link");
     }
 
+    /**
+     * Verifies the functionality of the "Login" link on the YouTube homepage.
+     *
+     * This method performs the following steps:
+     * - Waits for the "Login" link element to become visible on the page.
+     * - Locates the "Login" link element using its XPath.
+     * - Clicks on the "Login" link to navigate to the login page.
+     * - Waits for a specified duration to allow the page to load completely.
+     * - Captures a screenshot of the current state after clicking the link.
+     *
+     * @throws IOException if there is an error while taking or saving the screenshot.
+     *
+     * Preconditions:
+     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     * - An explicit wait must be configured to ensure the visibility of web elements during test execution.
+     */
     @Test(description = "Checks Login link", priority = 8)
     public void LoginLink() throws IOException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/div[2]/ytd-masthead/div[4]/div[3]/div[2]/ytd-button-renderer/yt-button-shape/a")));
@@ -131,6 +244,18 @@ public class HomeScreenSmokeTesting {
         Screenshot("Login Link");
     }
 
+    /**
+     * Captures a screenshot of the current state of the browser and saves it to the specified path.
+     *
+     * The method uses the `TakesScreenshot` interface to take a screenshot, and stores it in a location
+     * under the user's home directory with the specified file name. If the directory or file already
+     * exists, it overwrites the existing file.
+     *
+     * @param path The name of the file (without extension) to save the screenshot in the directory
+     *             "ScreenshotsForYoutubeProject" under the user's home directory. The final file will
+     *             have a `.png` extension.
+     * @throws IOException If an I/O error occurs while copying the screenshot file to the specified path.
+     */
     public void Screenshot(String path) throws IOException {
 
         String userHome = System.getProperty("user.home");
@@ -142,6 +267,11 @@ public class HomeScreenSmokeTesting {
         System.out.println("Screenshot taken at: " + userHome + File.separator + "ScreenshotsForYoutubeProject" + File.separator + path + ".png");
     }
 
+    /**
+     * Pauses the execution of the current thread for a specified duration.
+     *
+     * @param seconds The duration to pause, expressed in seconds.
+     */
     public void Wait(int seconds) {
         try {
             Thread.sleep(seconds * 1000L);
