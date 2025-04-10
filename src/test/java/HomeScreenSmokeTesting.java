@@ -4,6 +4,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,12 +16,12 @@ import java.nio.file.StandardCopyOption;
  * various functionalities and elements of the YouTube homepage. This class
  * is built using Selenium WebDriver for browser interaction and TestNG
  * annotations for structuring and executing test cases.
-
+ * <p>
  * Fields:
  * - driver: Instance of WebDriver for browser operations.
  * - wait: Instance of WebDriverWait for explicit wait handling.
  * - baseUrl: Base URL of the YouTube homepage.
-
+ * <p>
  * Methods:
  * - Setup(): Initializes the WebDriver, sets up WebDriverWait, and loads the YouTube homepage.
  * - OpenWebsite(): Verifies that the website opens successfully by checking the current URL.
@@ -34,7 +35,7 @@ import java.nio.file.StandardCopyOption;
  * - Screenshot(String path): Captures a screenshot and saves it to the specified path.
  * - Wait(int seconds): Pauses the test execution for the specified number of seconds.
  * - TearDown(): Closes the browser and ends the WebDriver session.
-
+ * <p>
  * This test class is designed for interactive and automated validation of YouTube's
  * UI elements and behavior, ensuring that key navigation links and features work as expected.
  */
@@ -131,26 +132,14 @@ public class HomeScreenSmokeTesting {
     }
 
     public void Screenshot(String path) throws IOException {
-        // Get the user's home directory
+
         String userHome = System.getProperty("user.home");
 
-        // Define the directory for saving screenshots
-        File screenshotsDir = new File(userHome + File.separator + "ScreenshotsForYoutubeProject");
-
-        // Create the directory if it doesn't exist
-        if (!screenshotsDir.exists()) {
-            screenshotsDir.mkdirs();
-        }
-
-        path = screenshotsDir.getAbsolutePath() + File.separator + "Downloads" + File.separator + path + ".png";
-
-        // Define the destination file
-        File destination = new File(path);
-
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File destination = new File(userHome + File.separator + "ScreenshotsForYoutubeProject" + File.separator + path + ".png");
         Files.copy(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-        System.out.println("Screenshot taken at: " + path);
+        System.out.println("Screenshot taken at: " + userHome + File.separator + "ScreenshotsForYoutubeProject" + File.separator + path + ".png");
     }
 
     public void Wait(int seconds) {
