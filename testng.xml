@@ -6,7 +6,6 @@
             <class name="HomeScreenSmokeTesting"/>
             <class name="Login">
                 <methods>
-
                     <include name="setup"/>
                     <include name="testValidLogin"/>
                     <include name="testLogout"/>
@@ -15,7 +14,18 @@
                     <include name="testEmptyLoginFields"/>
                 </methods>
             </class>
-            <class name="Search"/>
+            <class name="Search">
+                <methods>
+                    <include name="setup"/>
+                    <include name="homepage"/>
+                    <include name="performSearch"/>
+                    <include name="testSearchWithEmptyInput"/>
+                    <include name="testSearchRelevance"/>
+                    <include name="testSearchRetainsInput"/>
+                    <include name="testSearchDropdownSuggestions"/>
+                    <include name="testSearchButtons"/>
+                </methods>
+            </class>
             <class name="Video"/>
             <class name="Settings"/>
         </classes>
