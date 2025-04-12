@@ -10,12 +10,46 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+/**
+ * Represents a test class for automating actions and interactions on videos
+ * and comments sections of YouTube using Selenium WebDriver.
+ *
+ * The class contains methods to perform the following:
+ * - Scroll to specific sections of a web page.
+ * - Add comments to a video and verify the sorting of comments.
+ * - Check like and dislike functionality on videos.
+ * - Save a video to a watch list.
+ *
+ * All methods employ WebDriver's wait functionality to handle dynamic content
+ * and ensure reliable execution.
+ */
 public class Comments {
     WebDriver driver;
     WebDriverWait wait;
     String correctEmail = "fgcuswtspring2025@gmail.com";
     String correctPassword = "TestP@ssword123";
 
+    /**
+     * Sets up the preconditions required for executing tests involving YouTube automation.
+     *
+     * This method performs the following actions:
+     * - Initializes the web driver instance using `ChromeDriver`.
+     * - Sets up an explicit wait mechanism to handle dynamic content loading.
+     * - Maximizes the browser window for better visibility and interaction.
+     * - Navigates to the YouTube homepage.
+     * - Automates the login process by:
+     *   - Clicking the 'Sign in' button to open the login interface.
+     *   - Entering the email and password credentials.
+     *   - Progressing through the login workflow by interacting with 'Next' buttons.
+     *   - Waiting for specific elements to confirm successful authentication.
+     * - Verifies that the login was successful by checking the visibility of the avatar button.
+     * - Navigates to a specific YouTube video to prepare for subsequent test actions.
+     *
+     * The method ensures that the required environment is established and that the user
+     * is successfully authenticated before proceeding with further interactions or tests.
+     * Proper handling of dynamic elements and synchronization is achieved by leveraging
+     * explicit waits.
+     */
     @BeforeTest
     public void setup() {
         driver = new ChromeDriver();
