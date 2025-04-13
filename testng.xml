@@ -3,12 +3,28 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Shadow/IdeaProjects/RedditProject/src">
         <classes>
-            <class name="HomeScreenSmokeTesting"/>
-            <class name="Login"/>
-            <class name="Comments"/>
-            <class name="Search"/>
-            <class name="Video"/>
-            <class name="Settings"/>
+            <class name="Login">
+                <methods>
+                    <include name="setup"/>
+                    <include name="testValidLogin"/>
+                    <include name="testLogout"/>
+                    <include name="testLogoutRedirect"/>
+                    <include name="testInvalidLogin"/>
+                    <include name="testEmptyLoginFields"/>
+                </methods>
+            </class>
+            <class name="Search">
+                <methods>
+                    <include name="setup"/>
+                    <include name="homepage"/>
+                    <include name="performSearch"/>
+                    <include name="testSearchWithEmptyInput"/>
+                    <include name="testSearchRelevance"/>
+                    <include name="testSearchRetainsInput"/>
+                    <include name="testSearchDropdownSuggestions"/>
+                    <include name="testSearchButtons"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
