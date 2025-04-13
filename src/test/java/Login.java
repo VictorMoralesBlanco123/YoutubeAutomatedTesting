@@ -45,21 +45,18 @@ public class Login {
 
     /**
      * Tests the login functionality with valid credentials.
-     * <p>
-     * This test performs the following actions:
-     * 1. Navigates to the login page by clicking the sign-in link.
-     * 2. Enters a valid email address into the email field and proceeds to the next step.
-     * 3. Waits for the password field to become visible and enters a valid password.
-     * 4. Completes the login process by submitting the credentials.
-     * <p>
-     * The test validates successful login by ensuring the presence of the avatar button,
-     * which signifies that the user has been authenticated and redirected to the appropriate page.
-     * <p>
+     *
+     * This method performs the following actions:
+     * 1. Navigates to the login page by clicking the "Sign in" link.
+     * 2. Enters a valid email into the email input field and proceeds to the next step.
+     * 3. Waits for the password input field to become visible, enters a valid password, and submits the credentials.
+     * 4. Waits for the account avatar button to become visible, indicating successful login.
+     *
      * Assertions:
-     * - Validates that the avatar button is displayed after logging in with valid credentials.
-     * <p>
+     * - Verifies that the account avatar button is displayed, asserting that the user successfully logged in.
+     *
      * Priority:
-     * - This test is assigned a priority of 1, indicating it should run early in the test sequence.
+     * - This test is assigned a priority of 1, indicating it should be executed before other tests in this class.
      */
     @Test(description = "Tests logging in with valid credentials", priority = 1)
     public void testValidLogin() {
