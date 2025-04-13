@@ -25,6 +25,8 @@
                     <include name="testSearchButtons"/>
                 </methods>
             </class>
+            <class name="Video"/>
+            <class name="Settings"/>
         </classes>
     </test>
 </suite>
