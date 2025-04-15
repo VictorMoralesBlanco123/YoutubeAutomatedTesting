@@ -259,9 +259,13 @@ public class HomeScreenSmokeTesting {
     public void Screenshot(String path) throws IOException {
 
         String userHome = System.getProperty("user.home");
+        File screenshotsDir = new File(userHome + File.separator + "ScreenshotsForYoutubeProject");
+        if (!screenshotsDir.exists()) {
+            screenshotsDir.mkdirs();
+        }
 
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File destination = new File(userHome + File.separator + "ScreenshotsForYoutubeProject" + File.separator + path + ".png");
+        File destination = new File(screenshotsDir, path + ".png");
         Files.copy(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         System.out.println("Screenshot taken at: " + userHome + File.separator + "ScreenshotsForYoutubeProject" + File.separator + path + ".png");
