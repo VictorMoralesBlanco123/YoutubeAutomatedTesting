@@ -57,7 +57,7 @@ public class HomeScreenSmokeTesting {
         String url = driver.getCurrentUrl();
         Assert.assertEquals(url, baseUrl);
         driver.manage().window().maximize();
-        Wait(3);
+        Wait(2);
         Screenshot("Verify website");
     }
 
@@ -84,7 +84,7 @@ public class HomeScreenSmokeTesting {
         WebElement shortsLink;
         shortsLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[2]/a"));
         shortsLink.click();
-        Wait(3);
+        Wait(2);
         Screenshot("Shorts link");
     }
 
@@ -110,7 +110,7 @@ public class HomeScreenSmokeTesting {
         WebElement youtubeIconLink;
         youtubeIconLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/div[2]/ytd-masthead/div[4]/div[1]/ytd-topbar-logo-renderer/a/div/ytd-logo/yt-icon/span/div"));
         youtubeIconLink.click();
-        Wait(3);
+        Wait(2);
         Screenshot("Youtube icon link");
     }
 
@@ -136,7 +136,7 @@ public class HomeScreenSmokeTesting {
         WebElement historyLink;
         historyLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[2]/a"));
         historyLink.click();
-        Wait(3);
+        Wait(2);
         Screenshot("History link");
     }
 
@@ -162,7 +162,7 @@ public class HomeScreenSmokeTesting {
         WebElement youLink;
         youLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[2]/div/ytd-guide-entry-renderer[1]/a"));
         youLink.click();
-        Wait(3);
+        Wait(2);
         Screenshot("You link");
     }
 
@@ -188,7 +188,7 @@ public class HomeScreenSmokeTesting {
         WebElement subscriptionsLink;
         subscriptionsLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[3]/a"));
         subscriptionsLink.click();
-        Wait(3);
+        Wait(2);
         Screenshot("Subscriptions link");
     }
 
@@ -214,7 +214,7 @@ public class HomeScreenSmokeTesting {
         WebElement homeLink;
         homeLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[1]/a"));
         homeLink.click();
-        Wait(3);
+        Wait(2);
         Screenshot("Home link");
     }
 
@@ -240,7 +240,7 @@ public class HomeScreenSmokeTesting {
         WebElement loginLink;
         loginLink = driver.findElement(By.xpath("/html/body/ytd-app/div[1]/div[2]/ytd-masthead/div[4]/div[3]/div[2]/ytd-button-renderer/yt-button-shape/a"));
         loginLink.click();
-        Wait(3);
+        Wait(2);
         Screenshot("Login Link");
     }
 
@@ -259,9 +259,13 @@ public class HomeScreenSmokeTesting {
     public void Screenshot(String path) throws IOException {
 
         String userHome = System.getProperty("user.home");
+        File screenshotsDir = new File(userHome + File.separator + "ScreenshotsForYoutubeProject");
+        if (!screenshotsDir.exists()) {
+            screenshotsDir.mkdirs();
+        }
 
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File destination = new File(userHome + File.separator + "ScreenshotsForYoutubeProject" + File.separator + path + ".png");
+        File destination = new File(screenshotsDir, path + ".png");
         Files.copy(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         System.out.println("Screenshot taken at: " + userHome + File.separator + "ScreenshotsForYoutubeProject" + File.separator + path + ".png");
