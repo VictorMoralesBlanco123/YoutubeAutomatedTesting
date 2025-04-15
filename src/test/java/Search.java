@@ -71,6 +71,19 @@ public class Search {
     }
 
     /**
+     * Pauses the execution of the current thread for a specified duration.
+     *
+     * @param seconds The duration to pause, expressed in seconds.
+     */
+    public void Wait(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Tests the behavior of the search functionality when provided with an empty input.
      * <p>
      * This test verifies that submitting an empty search query does not navigate away
@@ -303,16 +316,4 @@ public class Search {
         driver.quit();
     }
 
-    /**
-     * Pauses the execution of the current thread for a specified duration.
-     *
-     * @param seconds The duration to pause, expressed in seconds.
-     */
-    public void Wait(int seconds) {
-        try {
-            Thread.sleep(seconds * 1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }
