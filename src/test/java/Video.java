@@ -5,11 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 
 /**
@@ -105,21 +103,21 @@ public class Video {
 
     /**
      * Verifies the functionality of transcript timestamps in a video player.
-     *
+     * <p>
      * This test ensures that:
      * 1. The transcript button is clickable and displays the transcript correctly.
      * 2. Clicking a specific timestamp in the transcript navigates to the corresponding video segment.
      * 3. The video player responds appropriately to a timestamp click by playing the video from the selected time.
-     *
+     * <p>
      * Precondition:
      * - The video page must be loaded, and the transcript feature must be available for the video.
-     *
+     * <p>
      * Test Steps:
      * 1. Wait for the video description box to be clickable and scroll it into view, then click the box to expand.
      * 2. Locate and click the transcript button to display the video's transcript.
      * 3. Locate a specific timestamp in the transcript and click it to navigate to the related video segment.
      * 4. Verify that the video plays from the selected timestamp by interacting with the video player.
-     *
+     * <p>
      * Priority: 3
      */
     @Test(description = "Verify transcript's timestamps are working", priority = 3)
@@ -171,10 +169,8 @@ public class Video {
      */
     @Test(description = "Check the next video button works", priority = 4)
     public void nextVideo() {
-        driver.get(Objects.requireNonNull(driver.getCurrentUrl()));
         WebElement nextVideoBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ytp-next-button")));
-        js.executeScript("window.open('" + nextVideoBtn.getAttribute("href") + "', '_blank');");
-        List<String> windows = new ArrayList<String>(driver.getWindowHandles());
+        nextVideoBtn.click();
 
         Wait(3);
     }

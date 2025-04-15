@@ -6,43 +6,46 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 /**
  * Represents a test class for automating actions and interactions on videos
  * and comments sections of YouTube using Selenium WebDriver.
- *
+ * <p>
  * The class contains methods to perform the following:
  * - Scroll to specific sections of a web page.
  * - Add comments to a video and verify the sorting of comments.
  * - Check like and dislike functionality on videos.
  * - Save a video to a watch list.
- *
+ * <p>
  * All methods employ WebDriver's wait functionality to handle dynamic content
  * and ensure reliable execution.
  */
 public class Comments {
     WebDriver driver;
     WebDriverWait wait;
+    JavascriptExecutor js;
     String correctEmail = "fgcuswtspring2025@gmail.com";
     String correctPassword = "TestP@ssword123";
 
     /**
      * Sets up the preconditions required for executing tests involving YouTube automation.
-     *
+     * <p>
      * This method performs the following actions:
      * - Initializes the web driver instance using `ChromeDriver`.
      * - Sets up an explicit wait mechanism to handle dynamic content loading.
      * - Maximizes the browser window for better visibility and interaction.
      * - Navigates to the YouTube homepage.
      * - Automates the login process by:
-     *   - Clicking the 'Sign in' button to open the login interface.
-     *   - Entering the email and password credentials.
-     *   - Progressing through the login workflow by interacting with 'Next' buttons.
-     *   - Waiting for specific elements to confirm successful authentication.
+     * - Clicking the 'Sign in' button to open the login interface.
+     * - Entering the email and password credentials.
+     * - Progressing through the login workflow by interacting with 'Next' buttons.
+     * - Waiting for specific elements to confirm successful authentication.
      * - Verifies that the login was successful by checking the visibility of the avatar button.
      * - Navigates to a specific YouTube video to prepare for subsequent test actions.
-     *
+     * <p>
      * The method ensures that the required environment is established and that the user
      * is successfully authenticated before proceeding with further interactions or tests.
      * Proper handling of dynamic elements and synchronization is achieved by leveraging
@@ -52,6 +55,7 @@ public class Comments {
     public void setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+        js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
         driver.get("https://www.youtube.com");
 
@@ -74,15 +78,15 @@ public class Comments {
     /**
      * Scrolls to the comment box section of a web page by targeting a specific
      * element on the page and bringing it into view.
-     *
+     * <p>
      * This method performs the following actions:
      * - Waits for a specified duration to allow page content to load.
      * - Identifies the title element using the provided XPath expression.
      * - Waits until the title element becomes visible on the page.
      * - Uses a JavaScript Executor to scroll the page, ensuring the title element
-     *   is brought into view with centered alignment.
+     * is brought into view with centered alignment.
      * - Introduces a final wait to allow the UI to settle after scrolling.
-     *
+     * <p>
      * The method ensures reliable scrolling behavior through WebDriver's
      * wait functionality and JavaScript execution, enabling interaction with
      * dynamically loaded content.
@@ -90,15 +94,14 @@ public class Comments {
     @Test(description = "Scrolls to Comment Box", priority = 1)
     public void scrollScreen() {
         Wait(1);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/ytd-page-manager/ytd-watch-flexy/div[5]/div[1]/div/div[2]/ytd-watch-metadata/div/div[1]/h1")));
-        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", title);
+        WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/ytd-page-manager/ytd-watch-flexy/div[5]/div[1]/div/div[2]/ytd-watch-metadata/div/div[1]/h1")));
+        js.executeScript("arguments[0].scrollIntoView({block: 'start'});", title);
         Wait(1);
     }
 
     /**
      * Automates the action of adding a comment to a comment section on a web page.
-     *
+     * <p>
      * This method performs the following tasks:
      * - Waits until the comment text box becomes visible on the page.
      * - Clicks on the comment text box to activate it.
@@ -109,10 +112,10 @@ public class Comments {
      * - Waits for the comment button to become visible.
      * - Clicks the comment button to submit the comment.
      * - Includes a final delay to ensure that the comment is posted successfully.
-     *
+     * <p>
      * The method employs WebDriver's `wait` functionality to ensure that all dynamic elements
      * are visible before interaction, ensuring reliable execution in dynamic web environments.
-     *
+     * <p>
      * Test priority for this method is set to 2.
      */
     @Test(description = "Adds Comment", priority = 2)
@@ -131,7 +134,7 @@ public class Comments {
     /**
      * Verifies the sorting functionality in the comments section of a web page by interacting
      * with the sort dropdown menu and selecting a sort option.
-     *
+     * <p>
      * The method performs the following actions:
      * - Waits for the sort menu to become visible.
      * - Clicks on the sort menu to open the dropdown.
@@ -139,10 +142,10 @@ public class Comments {
      * - Waits for the sort options dropdown to become visible.
      * - Selects a specific sort option from the dropdown.
      * - Introduces another short pause to allow for the sorting operation to complete.
-     *
+     * <p>
      * This method employs WebDriver's `wait` functionality to ensure that all elements
      * are visible before interaction, ensuring reliable execution in dynamic web environments.
-     *
+     * <p>
      * Test priority for this method is set to 3.
      */
     @Test(description = "Checks Sorting Functionality", priority = 3)
@@ -157,17 +160,17 @@ public class Comments {
 
     /**
      * Simulates the action of toggling the "like" and "dislike" buttons on a video.
-     *
+     * <p>
      * The method performs the following steps:
      * - Waits for the "dislike" button to become visible on the web page.
      * - Clicks the "dislike" button and pauses the execution for a specified duration.
      * - Waits for the "like" button to become visible on the web page.
      * - Clicks the "like" button and pauses the execution for a specified duration.
-     *
+     * <p>
      * This method utilizes WebDriver's `wait` functionality to ensure that the buttons
      * are visible before interacting with them, ensuring reliable execution in dynamic
      * web contexts.
-     *
+     * <p>
      * Priority level of this test is set to 4.
      */
     @Test(description = "Checking like and dislike on the Video", priority = 4)
@@ -186,20 +189,21 @@ public class Comments {
      * Simulates the action of saving a video to a watch list by interacting with UI elements on the webpage.
      * The method waits for the 'Save' button to become visible, clicks it,
      * and then toggles the watch list checkbox twice with pauses in between.
-     *
+     * <p>
      * This method utilizes WebDriver's 'wait' functionality to ensure elements
      * are visible before interaction.
-     *
+     * <p>
      * The behavior of the method includes:
      * - Clicking the save button to open the save popup.
      * - Selecting and deselecting the watch list checkbox.
      * - Adding delays between interactions for proper synchronization.
-     *
+     * <p>
      * Priority level of this test is set to 5.
      */
     @Test(description = "Save to a watch list", priority = 5)
     public void saveToWatchList() {
-        WebElement saveBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/ytd-app/div[1]/ytd-page-manager/ytd-watch-flexy/div[5]/div[1]/div/div[2]/ytd-watch-metadata/div/div[2]/div[2]/div/div/ytd-menu-renderer/div[2]/yt-button-view-model[3]/button-view-model/button/yt-touch-feedback-shape/div")));
+        WebElement saveBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/ytd-app/ytd-popup-container/tp-yt-iron-dropdown/div/ytd-menu-popup-renderer/tp-yt-paper-listbox/ytd-menu-service-item-renderer[1]/tp-yt-paper-item")));
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", saveBtn);
         saveBtn.click();
         Wait(1);
         WebElement watchListBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkbox")));
@@ -207,6 +211,7 @@ public class Comments {
         Wait(2);
         watchListBtn.click();
         Wait(2);
+
     }
 
     /**

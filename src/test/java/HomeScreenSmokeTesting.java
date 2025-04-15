@@ -3,7 +3,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +28,7 @@ public class HomeScreenSmokeTesting {
      * Initializes the WebDriver instance for Chrome browser and configures
      * an explicit WebDriverWait with a timeout of 10 seconds. Navigates
      * to the YouTube homepage.
-     *
+     * <p>
      * This setup method is executed before any test methods marked with the
      * TestNG @Test annotation. It ensures the WebDriver is properly initialized
      * and points to the target URL for testing.
@@ -40,7 +42,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Verifies that the website opens successfully.
-     *
+     * <p>
      * This method:
      * - Waits for the visibility of the search bar element identified by its name.
      * - Retrieves the current URL of the webpage and asserts that it matches the expected base URL.
@@ -73,10 +75,10 @@ public class HomeScreenSmokeTesting {
      * </ul>
      *
      * @throws IOException if there is an error while taking or saving the screenshot
-     *
-     * Preconditions:
-     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
-     * - The "Shorts" link element must be present and visible on the page.
+     *                     <p>
+     *                     Preconditions:
+     *                     - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     *                     - The "Shorts" link element must be present and visible on the page.
      */
     @Test(description = "Checks Shorts link", priority = 2)
     public void ShortsLink() throws IOException {
@@ -90,7 +92,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Verifies the functionality of the YouTube icon link on the homepage.
-     *
+     * <p>
      * This method:
      * - Waits for the YouTube icon link element to be visible on the page.
      * - Locates the YouTube icon link element using its XPath.
@@ -99,10 +101,10 @@ public class HomeScreenSmokeTesting {
      * - Captures a screenshot of the current state after interacting with the icon link.
      *
      * @throws IOException if there is an error while taking or saving the screenshot.
-     *
-     * Preconditions:
-     * - The WebDriver instance should be initialized and directed to the YouTube homepage.
-     * - Explicit wait must be configured to ensure the visibility of elements on the page.
+     *                     <p>
+     *                     Preconditions:
+     *                     - The WebDriver instance should be initialized and directed to the YouTube homepage.
+     *                     - Explicit wait must be configured to ensure the visibility of elements on the page.
      */
     @Test(description = "Checks Youtube icon link", priority = 3)
     public void YoutubeIconLink() throws IOException {
@@ -116,7 +118,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Verifies the functionality of the "History" link on the YouTube homepage.
-     *
+     * <p>
      * This method performs the following steps:
      * - Waits for the "History" link element to become visible.
      * - Locates the "History" link using its XPath.
@@ -125,10 +127,10 @@ public class HomeScreenSmokeTesting {
      * - Captures a screenshot of the current state after clicking the link.
      *
      * @throws IOException if there is an error while taking or saving the screenshot.
-     *
-     * Preconditions:
-     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
-     * - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     *                     <p>
+     *                     Preconditions:
+     *                     - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     *                     - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
      */
     @Test(description = "Checks History link", priority = 4)
     public void HistoryLink() throws IOException {
@@ -142,7 +144,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Verifies the functionality of the "You" link on the YouTube homepage.
-     *
+     * <p>
      * This method performs the following steps:
      * - Waits for the "You" link element to be visible.
      * - Locates the "You" link element using its XPath.
@@ -151,10 +153,10 @@ public class HomeScreenSmokeTesting {
      * - Captures a screenshot of the current state after clicking the link.
      *
      * @throws IOException if there is an error while taking or saving the screenshot.
-     *
-     * Preconditions:
-     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
-     * - Explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     *                     <p>
+     *                     Preconditions:
+     *                     - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     *                     - Explicit wait must be configured to ensure the visibility of web elements during the test execution.
      */
     @Test(description = "Checks You link", priority = 5)
     public void YouLink() throws IOException {
@@ -168,7 +170,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Verifies the functionality of the "Subscriptions" link on the YouTube homepage.
-     *
+     * <p>
      * This method performs the following steps:
      * - Waits for the "Subscriptions" link element to become visible on the page.
      * - Locates the "Subscriptions" link element using its XPath.
@@ -177,10 +179,10 @@ public class HomeScreenSmokeTesting {
      * - Captures a screenshot of the page after clicking the "Subscriptions" link.
      *
      * @throws IOException If there is an error while taking or saving the screenshot.
-     *
-     * Preconditions:
-     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
-     * - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     *                     <p>
+     *                     Preconditions:
+     *                     - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     *                     - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
      */
     @Test(description = "Checks Subscriptions link", priority = 6)
     public void SubscriptionsLink() throws IOException {
@@ -194,7 +196,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Verifies the functionality of the "Home" link on the YouTube homepage.
-     *
+     * <p>
      * This method performs the following actions:
      * - Waits for the "Home" link element to become visible using an explicit wait.
      * - Locates the "Home" link element by its XPath.
@@ -203,10 +205,10 @@ public class HomeScreenSmokeTesting {
      * - Captures a screenshot of the current state after interacting with the "Home" link.
      *
      * @throws IOException if an error occurs while taking or saving the screenshot.
-     *
-     * Preconditions:
-     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
-     * - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
+     *                     <p>
+     *                     Preconditions:
+     *                     - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     *                     - An explicit wait must be configured to ensure the visibility of web elements during the test execution.
      */
     @Test(description = "Checks Home link", priority = 7)
     public void HomeLink() throws IOException {
@@ -220,7 +222,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Verifies the functionality of the "Login" link on the YouTube homepage.
-     *
+     * <p>
      * This method performs the following steps:
      * - Waits for the "Login" link element to become visible on the page.
      * - Locates the "Login" link element using its XPath.
@@ -229,10 +231,10 @@ public class HomeScreenSmokeTesting {
      * - Captures a screenshot of the current state after clicking the link.
      *
      * @throws IOException if there is an error while taking or saving the screenshot.
-     *
-     * Preconditions:
-     * - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
-     * - An explicit wait must be configured to ensure the visibility of web elements during test execution.
+     *                     <p>
+     *                     Preconditions:
+     *                     - The WebDriver instance must be properly initialized and pointing to the YouTube homepage.
+     *                     - An explicit wait must be configured to ensure the visibility of web elements during test execution.
      */
     @Test(description = "Checks Login link", priority = 8)
     public void LoginLink() throws IOException {
@@ -246,7 +248,7 @@ public class HomeScreenSmokeTesting {
 
     /**
      * Captures a screenshot of the current state of the browser and saves it to the specified path.
-     *
+     * <p>
      * The method uses the `TakesScreenshot` interface to take a screenshot, and stores it in a location
      * under the user's home directory with the specified file name. If the directory or file already
      * exists, it overwrites the existing file.
