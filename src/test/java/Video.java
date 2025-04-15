@@ -5,9 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +35,7 @@ public class Video {
      * This setup is executed before the test suite starts to ensure a stable
      * testing environment for executing subsequent tests.
      */
-    @BeforeTest
+    @BeforeClass
     public void setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -214,7 +212,7 @@ public class Video {
      * after the test execution is completed. This method ensures the
      * WebDriver instance is properly terminated to release system resources.
      */
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }

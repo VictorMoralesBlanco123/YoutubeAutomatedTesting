@@ -6,9 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 
 /**
@@ -35,7 +33,7 @@ public class Login {
      * - Maximizes the browser window.
      * - Navigates to the YouTube homepage.
      */
-    @BeforeTest
+    @BeforeClass
     public void setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -219,7 +217,7 @@ public class Login {
      * for running the tests, ensuring that browser resources are properly released.
      * It is executed after all test methods in the test class have completed.
      */
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }

@@ -6,9 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Represents a test class for automating actions and interactions on videos
@@ -50,7 +48,7 @@ public class Comments {
      * Proper handling of dynamic elements and synchronization is achieved by leveraging
      * explicit waits.
      */
-    @BeforeTest
+    @BeforeClass
     public void setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -224,7 +222,7 @@ public class Comments {
         }
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }

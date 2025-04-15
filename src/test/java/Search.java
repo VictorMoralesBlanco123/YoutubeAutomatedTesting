@@ -33,7 +33,7 @@ public class Search {
      * Annotations:
      * - `@BeforeTest` ensures this method runs once before all test methods in this test suite.
      */
-    @BeforeTest
+    @BeforeClass
     public void setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -311,7 +311,7 @@ public class Search {
      * for running the tests, ensuring that browser resources are properly released.
      * It is executed after all test methods in the test class have completed.
      */
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }

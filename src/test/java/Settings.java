@@ -6,9 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class Settings {
      * Annotations:
      * - Annotated with TestNG's @BeforeTest annotation to ensure this method is executed before any test methods in the suite.
      */
-    @BeforeTest
+    @BeforeClass
     public void setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -266,7 +264,7 @@ public class Settings {
      * all the test methods defined in the suite have been run. It terminates the WebDriver instance
      * to release resources and close the browser window.
      */
-    @AfterTest
+    @AfterClass
     public void teardown() {
         driver.quit();
     }

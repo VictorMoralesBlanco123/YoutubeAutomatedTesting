@@ -38,7 +38,7 @@ public class Playlists {
      * Annotations:
      * - `@BeforeTest` ensures this method runs once before all test methods in this test suite.
      */
-    @BeforeTest
+    @BeforeClass
     public void setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -241,7 +241,7 @@ public class Playlists {
 
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }

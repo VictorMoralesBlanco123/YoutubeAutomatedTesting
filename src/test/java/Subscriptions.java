@@ -15,7 +15,7 @@ public class Subscriptions {
     String correctPassword = "TestP@ssword123";
     String channelName;
 
-    @BeforeTest
+    @BeforeClass
     public void setupAndLogin() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -106,7 +106,7 @@ public class Subscriptions {
         }
     }
 
-    @AfterTest
+    @AfterClass
     public void teardown() {
         driver.quit();
     }

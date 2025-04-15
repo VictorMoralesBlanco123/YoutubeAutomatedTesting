@@ -31,7 +31,7 @@ public class HomeScreenSmokeTesting {
      * TestNG @Test annotation. It ensures the WebDriver is properly initialized
      * and points to the target URL for testing.
      */
-    @BeforeTest
+    @BeforeClass
     public void Setup() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -284,7 +284,7 @@ public class HomeScreenSmokeTesting {
         }
     }
 
-    @AfterTest
+    @AfterClass
     public void TearDown() {
         driver.quit();
     }
