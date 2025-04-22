@@ -3,104 +3,14 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Shadow/IdeaProjects/RedditProject/src">
         <classes>
-
-            <class name="Login">
-                <methods>
-                    <include name="setup"/>
-                    <include name="testValidLogin"/>
-                    <include name="testLogout"/>
-                    <include name="testLogoutRedirect"/>
-                    <include name="testInvalidLogin"/>
-                    <include name="testEmptyLoginFields"/>
-                    <include name="teardown"/>
-                    <include name="wait"/>
-                </methods>
-            </class>
-
-            <class name="Search">
-                <methods>
-                    <include name="setup"/>
-                    <include name="homepage"/>
-                    <include name="performSearch"/>
-                    <include name="testSearchWithEmptyInput"/>
-                    <include name="testSearchRelevance"/>
-                    <include name="testSearchRetainsInput"/>
-                    <include name="testSearchDropdownSuggestions"/>
-                    <include name="testSearchButtons"/>
-                    <include name="teardown"/>
-                    <include name="wait"/>
-                </methods>
-            </class>
-
-            <class name="Settings">
-                <methods>
-                    <include name="setup"/>
-                    <include name="testSideLinks"/>
-                    <include name="testNotifications"/>
-                    <include name="testUploadVideo"/>
-                    <include name="testEditVideoTitle"/>
-                    <include name="testDownloadVideo"/>
-                    <include name="teardown"/>
-                    <include name="Wait"/>
-                </methods>
-            </class>
-
-            <class name="HomeScreenSmokeTesting">
-                <methods>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                </methods>
-            </class>
-
-            <class name="Playlists">
-                <methods>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                </methods>
-            </class>
-
-            <class name="Video">
-                <methods>
-                    <include name="setup"/>
-                    <include name="testPauseAndPlay"/>
-                    <include name="testCaptions"/>
-                    <include name="testTranscript"/>
-                    <include name="nextVideo"/>
-                    <include name="getTitlesAndUrls"/>
-                    <include name="teardown"/>
-                    <include name="Wait"/>
-                </methods>
-            </class>
-
-            <class name="Subscriptions">
-                <methods>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-                    <include name=""/>
-
-                </methods>
-            </class>
-
-            <class name="Comments">
-                <methods>
-                    <include name="setup"/>
-                    <include name="scrollScreen"/>
-                    <include name="addComment"/>
-                    <include name="checkSorting"/>
-                    <include name="checkLikeDislike"/>
-                    <include name="saveToWatchList"/>
-                    <include name="teardown"/>
-                    <include name="Wait"/>
-                </methods>
-            </class>
+            <class name="Login"/>
+            <class name="Search"/>
+            <class name="Settings"/>
+            <class name="HomeScreenSmokeTesting"/>
+            <class name="Playlists"/>
+            <class name="Video"/>
+            <class name="Subscriptions"/>
+            <class name="Comments"/>
         </classes>
     </test>
 </suite>

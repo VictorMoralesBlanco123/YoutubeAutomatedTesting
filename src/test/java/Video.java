@@ -11,12 +11,10 @@ import org.testng.annotations.Test;
 
 
 /**
- * Represents a class that interacts with YouTube videos
- * through Selenium WebDriver for automated testing purposes.
- * <p>
- * The class includes methods to test functionalities such as
- * pause/play, captions, video transcript timestamps, navigating to
- * the next video, and retrieving video titles and URLs.
+ * Represents a utility class for interacting with a video player on a web page.
+ * This class contains methods for setting up the browser environment, as well as
+ * tests for verifying functionalities such as playing, pausing, interacting with
+ * captions, handling transcripts, and navigating to the next video.
  */
 public class Video {
 
@@ -25,13 +23,23 @@ public class Video {
     JavascriptExecutor js;
 
     /**
-     * Initializes the WebDriver instance, sets up the browser window, and navigates
-     * to the specified YouTube video URL. Configures an explicit wait for handling
-     * dynamic web elements, maximizes the browser window, and interacts with the
-     * video player by clicking the play button.
-     * <p>
-     * This setup is executed before the test suite starts to ensure a stable
-     * testing environment for executing subsequent tests.
+     * Initializes the test setup before any test is run.
+     *
+     * This method is annotated with `@BeforeClass`, indicating that it
+     * is executed once before all the test methods in the class.
+     * It performs the following actions:
+     *
+     * - Creates a new instance of ChromeDriver to initialize the WebDriver.
+     * - Sets up an explicit wait with a timeout of 10 seconds.
+     * - Casts the WebDriver instance to `JavascriptExecutor` for potential JavaScript execution.
+     * - Maximizes the browser window for better visibility during test execution.
+     * - Navigates to a specified YouTube video URL to prepare the testing environment.
+     * - Waits for the play button to become visible on the page, ensuring the video player is loaded.
+     * - Simulates a click on the play button to start video playback.
+     *
+     * Preconditions:
+     * - ChromeDriver must be properly configured on the system.
+     * - The YouTube page should be accessible from the system running the tests.
      */
     @BeforeClass
     public void setup() {
@@ -45,23 +53,23 @@ public class Video {
     }
 
     /**
-     * Verifies the pause and play functionality of a video player.
-     * The method simulates user interaction by pausing the video
-     * and then playing it again to ensure the functionality works as expected.
-     * <p>
-     * The video element is located using an explicit wait to handle dynamic loading
-     * and is identified by its XPath. The method contains a delay between actions
-     * to simulate user behavior more realistically.
-     * <p>
-     * Precondition: The video player should be visible and loaded on the web page.
-     * <p>
-     * Steps:
-     * 1. Locate the video element on the page.
-     * 2. Pause the video by simulating a click action.
-     * 3. Wait for a specified duration.
-     * 4. Resume playback by simulating another click action.
-     * <p>
-     * Test priority: 1
+     * Tests the Pause and Play functionality of a video player.
+     *
+     * This method verifies the capability to pause and resume video playback
+     * by simulating clicks on the video player. It ensures that:
+     * - The video player is visible before interacting.
+     * - A pause action is performed on the video followed by a subsequent play action.
+     *
+     * Test Steps:
+     * 1. Wait until the video element is visible on the page.
+     * 2. Simulate a click event to pause the video.
+     * 3. Wait for a short duration to mimic natural user interaction.
+     * 4. Simulate another click event to resume video playback.
+     *
+     * Preconditions:
+     * - The video player must be loaded and visible on the web page.
+     *
+     * Priority: 1
      */
     @Test(description = "Testing Pause and Play functionality", priority = 1)
     public void testPauseAndPlay() {

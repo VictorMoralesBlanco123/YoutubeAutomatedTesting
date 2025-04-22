@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 
 import java.util.List;
 
-//https://www.vidsplay.com/flying-over-the-ocean/ for the video
+//https://www.vidsplay.com/flying-over-the-ocean/ Download link for the video
 
 /**
  * Represents the configuration and testing operations for automating YouTube functionality using Selenium WebDriver.
